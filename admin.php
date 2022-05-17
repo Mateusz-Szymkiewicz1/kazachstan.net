@@ -1,0 +1,380 @@
+<?php
+    if(!isset($_SERVER['HTTP_REFERER'])){
+    header('Location: index.php');
+    exit;
+}
+?>
+<html>
+<head>
+    <title>Panel Admina - Kazachstan.net</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale" />
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
+       <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+   <script type="text/javascript">
+        function window_pokaz(id){
+             document.getElementById("window"+id).style.display = 'block';
+       }
+       function window_ukryj(id){
+             document.getElementById("window"+id).style.display = 'none';
+       }
+   </script>
+    <style>
+        body {
+            background: #208c71;
+            color: #fff;
+            font-family: 'DotGothic16';
+            text-align: center;
+            overflow-x: hidden;
+        }
+        ::selection{
+            color: #208c71;
+            background: #fff;
+        }
+        h1 {
+            margin-top: 18vh;
+            margin-bottom: 5vw;
+        }
+
+        .h3-admin {
+            display: inline;
+            font-size: 1.5vw;
+            margin-top: 4vw;
+        }
+
+        input[type=number] {
+            display: inline;
+            margin-top: 2vh;
+            margin-left: 0vh;
+            width: 10vw;
+        }
+
+        .h3-admin2 {
+            font-size: 1.5vw;
+            margin-top: 4vw;
+            display: inline;
+            margin-left: 3vw;
+        }
+
+        input[type=submit] {
+            outline: none;
+            border: none;
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 6px;
+            margin-left: 1.5vw;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background: #1dbb60;
+        }
+        .back{
+           position: absolute;
+           top: 5px;
+           right: 10px;
+           transform: rotate(90deg);
+       }
+        h4{
+            text-align: left;
+            padding-left: 3vw;
+            line-height: 19px;
+            cursor: pointer;
+            width: 220px;
+        }
+        h4:first-of-type{
+            margin-top: 15vh;
+        }   
+        .window-body{
+       padding-left: 6px;
+}
+ ::-webkit-scrollbar {
+        width: 16px;
+    }
+::-webkit-scrollbar-thumb {
+        background-color: #dfdfdf;
+        box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+ }
+.window{
+    position: absolute;
+    top: 50vh;
+    right: 1.5vw;
+    font-size: 12px;
+    height: 220px;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+.window4 > .window-body{
+      padding-top: 10px;
+}
+        @font-face{font-family:"Pixelated MS Sans Serif";font-style:normal;font-weight:400;src:url(ms_sans_serif.woff) format("woff");src:url(ms_sans_serif.woff2) format("woff2")}@font-face{font-family:"Pixelated MS Sans Serif";font-style:normal;font-weight:700;src:url(ms_sans_serif_bold.woff) format("woff");src:url(ms_sans_serif_bold.woff2) format("woff2")}
+.title-bar,.window,label,ul.tree-view{-webkit-font-smoothing:none;font-family:"DotGothic16",Arial;font-size:11px}.window{background:silver;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;padding:3px; z-index: 1;}.title-bar{align-items:center;background:linear-gradient(90deg,navy,#1084d0);display:flex;justify-content:space-between;padding:3px 4px 3px 5px}
+.title-bar-text{color:#fff;font-weight:700;letter-spacing:0;margin-right:24px}.title-bar-controls{display:flex}.title-bar-controls button{display:block; cursor: pointer; min-height:14px;min-width:16px;padding:0}.title-bar-controls button:active{padding:0}.title-bar-controls button:focus{outline:none}.title-bar-controls button[aria-label=Minimize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 0h6v2H0z'/%3E%3C/svg%3E");background-position:bottom 3px left 3px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Maximize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 0H0v9h9V0zM8 2H1v6h7V2z' fill='%23000'/%3E%3C/svg%3E");background-position:top 0.8px left 2px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Close]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E");background-position:top 2px left 3px;background-repeat:no-repeat;margin-left:2px}.status-bar{gap:1px;display:flex;margin:0 1px}.status-bar-field{box-shadow:inset -1px -1px #dfdfdf,inset 1px 1px grey;flex-grow:1;margin:0;padding:2px 3px}.window-body{margin:8px}fieldset{border:none;box-shadow:inset -1px -1px #fff,inset -2px 1px grey,inset 1px -2px grey,inset 2px 2px #fff;margin:0;padding:10px;padding-block-start:8px}legend{background:silver}
+.window{
+   display: block;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    position: absolute;
+    cursor: move;
+    display: none;
+}
+         ::-webkit-scrollbar {
+        width: 16px;
+    }
+::-webkit-scrollbar-thumb {
+        background-color: #dfdfdf;
+        box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+ }
+        :root{
+           --border-raised-outer: inset -1px -1px #0a0a0a,
+            inset 1px 1px #fff;
+        --border-raised-inner: inset -2px -2px #808080,
+            inset 2px 2px #dfdfdf;
+} 
+        .span_data{
+    color:#9b59b6;
+}
+        a{
+            color: #0000ff;
+            text-decoration: none;
+        }
+        table{
+            text-align: center;
+            margin: auto;
+            margin-top: 40px;
+            margin-bottom: 100px;
+             border: 2px solid #fff;
+  width:100%;table-layout: fixed;
+        }
+        .tr1>td{
+            border: none;
+        }
+        td{
+            border: 2px solid #fff;
+            padding: 7px;
+            word-wrap: break-word;
+        }
+        h2{
+            margin-top: 50px;
+        }
+        .dodaj_submit{
+            margin-bottom: 120px;
+            margin-top: 20px;
+            width: 80px;
+        }
+        #dodaj_plec, input[type=text], input[type=number]{background-color:#fff;box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;box-sizing:border-box;padding:3px 4px; border:none}
+    #dodaj_plec{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0v16h1V1h14V0z' fill='%23DFDFDF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1v14h1V2h12V1H2z' fill='%23fff'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H0v-1h15V0h1v17z' fill='%23000'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1h-1v14H1v1h14V1z' fill='gray'/%3E%3Cpath fill='silver' d='M2 2h12v13H2z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 6H4v1h1v1h1v1h1v1h1V9h1V8h1V7h1V6z' fill='%23000'/%3E%3C/svg%3E");background-position:top 5px right 5px;background-repeat:no-repeat;border-radius:0;padding-right:32px;position:relative}
+    select:focus{outline:none}
+    select, input[type=text], input[type=number]{
+        width: 190px;
+        height: 26px;
+        font-size: 11px;
+        text-indent: 3px;
+        margin-bottom: 2vh;
+        font-family: 'DotGothic16';
+        outline: none;
+    }
+        input[type=number]{
+            width: 130px;
+        }
+        .h2_dodaj{
+            margin-bottom: 40px;
+        }
+        .span_error{
+            display: block;
+            margin-bottom: 5vh;
+            color: #ff0081;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        a{
+            color: #969eff;
+        }
+        .window_a{
+            color: #0000ff;
+        }
+        #a_wiecej{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="h1_panel">Panel Admina</h1>
+    <a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
+    <?php
+    error_reporting(0);
+        echo '<form action="admin.php" method="post">';
+            echo '<h3 class="h3-admin">'.'Ilosc ocen: '.'</h3>';
+            echo '<input type="number" min="1" name="ilosc_admin">';
+            echo '<h3 class="h3-admin2" >'.'Suma ocen: '.'</h3>';
+             echo '<input type="number" min="1" name="suma_admin">';
+            echo '<h3 class="h3-admin2" >'.'ID obywatela: '.'</h3>';
+            echo '<input type="number" min="1" name="id_admin">';
+            echo '<input type="submit" value="przeslij">';
+            echo '</form>';
+          // ZMIANY Z PANELU ADMINA 
+            $host = 'localhost';
+            $db_user = 'root';
+            $db_password = '';
+            $db_name = 'kazachstan';
+            $polaczenie = @ new mysqli($host, $db_user, $db_password, $db_name);   
+                   $id_admin = $_POST['id_admin'] ?? 0;
+                    $suma_admin = $_POST['suma_admin'] ?? 0;
+                    $ilosc_admin = $_POST['ilosc_admin'] ?? 0;  	
+    if($suma_admin > 0 and $ilosc_admin > 0 and $id_admin > 0){
+		$sql = "UPDATE obywatele
+                       SET ilosc_ocen = $ilosc_admin, suma_ocen = $suma_admin
+                     WHERE id  = $id_admin;
+                    "; 
+        $rezultat = @$polaczenie->query($sql);
+    }
+    // WYŚWIETLANIE OCEN
+		$sql2 = "SELECT * FROM obywatele"; 
+        $rezultat2 = @$polaczenie->query($sql2);
+      $wiecej = $_GET['wiecej'] ?? 'False';
+    if($wiecej != 'True'){
+       for($i = 1; $i <= 10; $i++){
+        $wiersz = mysqli_fetch_array($rezultat2);
+        $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+            $id = $wiersz['id'];
+        if(is_nan($ocena)){
+                   echo '<h4 onclick="window_pokaz('."'".$id."'".')">'.'Obywatel_'.$id.': '.'Brak'.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
+              }
+           else{
+                   echo '<h4 onclick="window_pokaz('.$id.')">'.'Obywatel_'.$id.': '.$ocena.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
+            }
+        }
+        echo '<a href="admin.php?wiecej=True" id="a_wiecej"><h4 style="color: #969eff; margin: 0;">Pokaz wiecej...</h4></a>';
+    }
+    else{
+             while ($wiersz = mysqli_fetch_array($rezultat2)) {
+     $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+                $id = $wiersz['id'];
+               $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+               if(is_nan($ocena)){
+                   echo '<h4 onclick="window_pokaz('.$id.')">'.'Obywatel_'.$id.': '.'Brak'.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
+               }
+               else{
+                   echo '<h4 onclick="window_pokaz('.$id.')">'.'Obywatel_'.$id.': '.$ocena.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
+               }
+           }  
+        echo '<a href="admin.php?wiecej=False" id="a_wiecej"><h4 style="color: #969eff; margin: 0;">Pokaz mniej...</h4></a>';
+    }
+            mysqli_free_result($rezultat2);
+    // KOMENTARZE - WYŚWIETLANIE
+    $sql_count = "SELECT id FROM obywatele";
+    $wynik_count = mysqli_query($polaczenie, $sql_count);
+    $ile_ob = $wynik_count->num_rows;
+for($i = 1; $i<=$ile_ob; $i++){
+  $sql_kom = "SELECT * FROM komentarze WHERE ob_id = '$i' ORDER BY data DESC;";
+    $wynik_kom = mysqli_query($polaczenie, $sql_kom);
+    $ile_kom = $wynik_kom->num_rows;
+    $row_kom = mysqli_fetch_array($wynik_kom);
+    if($ile_kom < 1){
+      echo '<div class="window" id="window'.$i.'" style="width: 300px">
+  <div class="title-bar" id="title-bar">
+    <div class="title-bar-text">Komentarze ('.$ile_kom.') - Obywatel_'.$i.'</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="window_ukryj('.$i.')"></button>
+    </div>
+  </div>
+  <div class="window-body" id="window-body">'.'<br />'.'Zero komentarzy ;(';
+    echo '</div></div>'; 
+    }
+    else{
+    echo '<div class="window" id="window'.$i.'" style="width: 300px">
+  <div class="title-bar" id="title-bar">
+    <div class="title-bar-text">Komentarze ('.$ile_kom.') - Obywatel_'.$i.'</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="window_ukryj('.$i.')"></button>
+    </div>
+  </div>
+  <div class="window-body" id="window-body">'.'<br />'.
+    $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.' '.'<a href="usuwanie_kom.php?id='.$row_kom['id'].'" class="window_a">'.'Usun'.'</a>'.'<br />'.'<br />';
+            while ($row_kom = mysqli_fetch_array($wynik_kom)) {
+                 echo $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.' '.'<a href="usuwanie_kom.php?id='.$row_kom['id'].'" class="window_a">'.'Usun'.'</a>'.'<br />'.'<br />';
+				}
+    echo '</div></div>'; 
+    }
+    for($j = 1; $j <= $ile_ob; $j++){
+        echo '<script>
+              $( function() {
+    $( "#window'.$j.'" ).draggable();
+            } );
+        </script>';
+    }
+}
+        mysqli_set_charset($polaczenie, "utf8");
+    $sql_uwagi = "SELECT * FROM uwagi ORDER BY data DESC;";
+    $wynik_uwagi = mysqli_query($polaczenie, $sql_uwagi);
+    echo '<h2>Uwagi</h2>';
+    echo '<table><tbody align="Center">
+        <tr class="tr1">
+            <td>id</td>
+            <td>tresc</td>
+            <td>podpis</td>
+            <td>data</td>
+        </tr>';
+            while($row = mysqli_fetch_array($wynik_uwagi)){
+                $id = $row['id'];
+                echo'<tr height= "20">
+					<td>'.$row['id'].'</td>
+					<td>'.$row['tresc'].'  </td>	
+					<td>'.$row['podpis'].'  </td>	
+					<td>'.$row['data'].'  </td>	
+					<td> <a href="usun_uwage.php?id='.$id.'" class="color_a">'.'Usun'.'</a>'.'</td>	
+				</tr>';
+            }
+		echo '</tbody></table>';
+    echo     '<br />'.'<h2 class="h2_dodaj" id="h2_dodaj">Dodaj Obywatela</h2>';
+    // DODANIE OBYWATELA
+    $d_imie = $_POST['dodaj_imie'] ?? null;
+    $d_nazwisko = $_POST['dodaj_nazwisko'] ?? null;
+    $d_wiek = $_POST['dodaj_wiek'] ?? null;
+    $d_plec = $_POST['dodaj_plec'] ?? null;
+    $d_narod = $_POST['dodaj_narodowosc'] ?? null;
+    $d_przeslano = $_POST['przeslano'] ?? null;
+    if($d_przeslano == 'True'){
+    if($d_imie != null and $d_nazwisko != null and $d_wiek != null and $d_plec != 'brak' and $d_narod != null){
+    mysqli_set_charset($polaczenie, "utf8");
+    $sql_dodaj3 = "SELECT * FROM obywatele ORDER BY id DESC;";
+    $wynik_dodaj3 = mysqli_query($polaczenie, $sql_dodaj3);
+    $row_dodaj3 = mysqli_fetch_array($wynik_dodaj3);
+    $nowe_id = $row_dodaj3['id']+1;
+    $sql_dodaj = "INSERT INTO obywatele(id, imie, nazwisko, wiek, plec, narodowosc) 
+    VALUES('$nowe_id','$d_imie', '$d_nazwisko', '$d_wiek', '$d_plec', '$d_narod');";
+    $wynik_dodaj = mysqli_query($polaczenie, $sql_dodaj);
+    header: 'Location: index.php';
+    echo '<script type="text/javascript">document.location = "index.php"; </script>';
+    }
+    else{
+        echo '<span class="span_error">Podano złe dane wprowadzania!</span>';
+    }
+    }
+        ?>
+        <form action="admin.php#h2_dodaj" method="post">
+            <input type="text" name="dodaj_imie" placeholder="Wpisz imie..." autocomplete="off" maxlength="15" pattern="[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]+"><br />
+            <input type="text" name="dodaj_nazwisko" placeholder="Wpisz nazwisko..." autocomplete="off" maxlength="20" pattern="[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]+"><br />
+            <input type="number" name="dodaj_wiek" min="0" max="130" placeholder="Wpisz wiek..."><br />
+            <select id="dodaj_plec" name="dodaj_plec">
+           <option value="brak">Wybierz płec...</option>
+            <option value="Kobieta">Kobieta</option>
+                <option value="Mężczyzna">Mężczyzna</option>
+        </select><br />
+            <input type="text" name="dodaj_narodowosc" placeholder="Wpisz narodowosc..." autocomplete="off" maxlength="25" pattern="[A-Za-z-ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+"><br />
+            <input type="hidden" name="przeslano" value="True">
+        <input type="submit" value="Dodaj" class="dodaj_submit">
+        </form>
+</body>
+</html>

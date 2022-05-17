@@ -1,0 +1,22 @@
+@media only screen and (min-width: 1500px) {
+    .window{
+        transform: scale(1.25);
+    }
+    #window2{
+        margin-left: 4vw;
+    }
+    #window7{
+        margin-left: 4vw;
+        margin-top: 23vh;
+    }
+    #window{
+        margin-top: 160px;
+    }
+    #window3{
+        margin-right: 50px;
+        margin-top: 50px;
+    }
+    #window4{
+        margin-right: 50px;
+    }
+  }

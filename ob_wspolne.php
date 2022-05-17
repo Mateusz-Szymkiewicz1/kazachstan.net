@@ -1,0 +1,160 @@
+<?php
+$id = $_GET['id'] ?? null;
+$host = 'localhost';
+            $user = 'root';
+            $hasło = '';
+            $baza = 'kazachstan';
+			$id_conn2 = mysqli_connect($host, $user, $hasło, $baza);
+		$sql_0 = "SELECT id FROM obywatele ORDER BY id DESC";
+		 $wynik_0 = mysqli_query($id_conn2, $sql_0);
+    $row_0 = mysqli_fetch_array($wynik_0);
+if($id < 1 or $id > $row_0['id']){
+    echo '<script type="text/javascript">document.location = "index.php"; </script>';
+}
+$tresc = $_POST['kom'] ?? null;
+if($tresc != null and strlen($tresc) > 5){
+      if(!empty($_POST['g-recaptcha-response'])){
+        $secret = '6Lei1pUdAAAAAPPmDOFgJZZHVepP1w7fiYY_QrLz';
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
+if(preg_match('/^[A-Za-z ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/', $tresc)){
+            $host = 'localhost';
+            $user = 'root';
+            $hasło = '';
+            $baza = 'kazachstan';
+			$id_conn2 = mysqli_connect($host, $user, $hasło, $baza);
+		$sql_komentarz = "INSERT INTO komentarze(ob_id, tresc, data) VALUES('$id', '$tresc', now());";
+		 $wynik = mysqli_query($id_conn2, $sql_komentarz);
+    header: 'Location: index.php';
+    echo '<script type="text/javascript">document.location = "index.php"; </script>';
+}
+else{
+    echo '<div class="window" id="window6" style="width: 300px">
+  <div class="title-bar">
+    <div class="title-bar-text">Błąd<i class="icon-attention"></i></div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="error_close()"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <form>
+      <h2 class="h2-error">Error: umiesc w komentarzu jedynie litery lub cyfry</h2>
+    </form>
+  </div>
+</div>';
+}
+      }
+else{
+     echo '<div class="window" id="window6" style="width: 300px">
+  <div class="title-bar">
+    <div class="title-bar-text">Błąd<i class="icon-attention"></i></div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="error_close()"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <form>
+      <h2 class="h2-error">Error: zaznacz ze nie jestes robotem</h2>
+    </form>
+  </div>
+</div>';
+}
+}
+?>
+<html>
+    <head>
+        <title>Obywatel<?php echo ' '.$id ?> - Kazachstan.net</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale" />
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
+<link rel="stylesheet" href="ob.css">
+<link rel="stylesheet" href="k2.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+   <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
+    </head>
+    <script src="skrypty.js"></script>
+<body onload="startTime();startTime2()">
+<a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
+<h1 class="kaza" >Obywatel_<?php echo $id ?></h1>
+    <span class="text1">Witamy w kartotece obywatela numer <?php echo ' '.$id ?>. Możesz wystawic ocenę oraz napisac komentarz.</span>
+    <div class="window" id="window2" style="width: 300px">
+  <div class="title-bar">
+    <div class="title-bar-text"><i class="icon-star"></i> <span class="span_underline">W</span>ystaw opinię</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div class="star-rating" id="star-rating">
+        <form action="ob_wspolne.php?id=<?php echo $id ?>" method="post">
+      <input type="radio" name="stars" id="star-a" value="5"/>
+      <label for="star-a"></label>
+
+      <input type="radio" name="stars" id="star-b" value="4"/>
+      <label for="star-b"></label>
+  
+      <input type="radio" name="stars" id="star-c" value="3"/>
+      <label for="star-c"></label>
+  
+      <input type="radio" name="stars" id="star-d" value="2"/>
+      <label for="star-d"></label>
+  
+      <input type="radio" name="stars" id="star-e" value="1"/>
+      <label for="star-e"></label>
+       <input type="submit" value="Przeslij" id="submit_ocena">
+        </form>
+</div>
+  </div>
+</div>
+    <div class="window" id="window3" style="width: 300px">
+  <div class="title-bar">
+    <div class="title-bar-text"><i class="icon-eye-off"></i> zdj.jpg</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <img src="alt.jpg" width="280px">
+  </div>
+</div>
+     <div class="startbar">
+  <div id="startbutton" class="startbutton-off">
+    <b>Start</b>
+  </div>
+<div class="time" id="time" onclick="pokaz_pm()"></div>
+  <div class="time" id="time2" onclick="ukryj_pm()"></div>
+    </div>
+<div class="window" id="window5" style="width: 320px">
+  <div class="title-bar">
+    <div class="title-bar-text"><span class="span_underline">D</span>odaj komentarz</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="komentarz_close()"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <form method="post" action="ob_wspolne.php?id=<?php echo $id ?>" id="frmContact" novalidate="novalidate">
+      <textarea name="kom" placeholder="Wpisz komentarz (conajmniej 6 znaków)..." maxlength="160" spellcheck="false"></textarea>
+       <div class="g-recaptcha" data-sitekey="6Lei1pUdAAAAAHzmwCXB0Uyk9SGk6EERe88Kxs4e"></div>
+      <input type="submit" id="submit_kom" value="Przeslij">  
+    </form>
+  </div>
+</div>
+    </body>
+      <?php
+   require_once "ob_skrypt.php";
+?>
+</html>
