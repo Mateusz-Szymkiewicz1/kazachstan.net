@@ -113,14 +113,10 @@
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
         $responseData = json_decode($verifyResponse);
 if(preg_match('/^[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/', $uwaga) or preg_match('/^[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/', $podpis) and preg_match('/^[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/', $uwaga)){
-            $host = 'localhost';
-            $user = 'root';
-            $hasło = '';
-            $baza = 'kazachstan';
-			$id_conn2 = mysqli_connect($host, $user, $hasło, $baza);
-    mysqli_set_charset($id_conn2, "utf8");
+        require_once "connect.php";
 		$sql_uwaga = "INSERT INTO uwagi(tresc, podpis, data) VALUES('$uwaga', '$podpis', now());";
-		 $wynik = mysqli_query($id_conn2, $sql_uwaga);
+        $stmt = $db->prepare($sql_uwaga);
+        $stmt->execute();
     header: 'Location: index.php';
     echo '<script type="text/javascript">document.location = "index.php"; </script>';
 }

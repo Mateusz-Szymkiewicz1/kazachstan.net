@@ -5,14 +5,11 @@
 }
 ?>
 <?php
-$host = 'localhost';
-            $db_user = 'root';
-            $db_password = '';
-            $db_name = 'kazachstan';
-            $polaczenie = @ new mysqli($host, $db_user, $db_password, $db_name);   
+require_once "connect.php"; 
 $id_kom = $_GET['id'];
 $sql = "DELETE FROM komentarze WHERE id = $id_kom";
-$rezultat = @$polaczenie->query($sql);
+$stmt = $db->prepare($sql);
+$stmt->execute();
   header: 'Location: admin.php';
     echo '<script>'.'window.location.replace("admin.php");'.'</script>';
 ?>

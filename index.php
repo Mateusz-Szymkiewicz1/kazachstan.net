@@ -5,20 +5,19 @@ error_reporting(0);
 require_once "connect.php";  
        $now = time();
     // SYSTEM LOGOWANIA
-    $polaczenie = @ new mysqli($host, $db_user, $db_password, $db_name);
     $nick = $_POST['nick'];
             $haslo = $_POST['haslo'];
             $sql = "SELECT * FROM uzytkownicy WHERE nick='$nick' AND haslo='$haslo';";
-                if($rezultat = @$polaczenie->query($sql)){
-                    $ilu_userow = $rezultat->num_rows;
-                    $wiersz_user = $rezultat->fetch_assoc();
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+                    $ilu_userow = $stmt->rowCount();
+                    $wiersz_user = $stmt->fetch(PDO::FETCH_ASSOC);
                     if($ilu_userow>0){
                         $_SESSION['zalogowany'] = 'True';
                         $_SESSION['time'] = time();
                         $_SESSION['expire'] = $_SESSION['time'] + (15 * 60);
                         $_SESSION['nick'] = $wiersz_user['nick'];
                     }
-                }
 ?>
 <html>
 <head>
@@ -666,7 +665,6 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
     <br /><br /><br />
     <?php
     require_once "connect.php";
-    $polaczenie = @ new mysqli($host, $db_user, $db_password, $db_name);
     $sort = $_GET['lista'] ?? 'domyslnie'; 
        if(isset($_GET['szukane'])){
                $szukane = explode(' ', $_GET['szukane']) ?? null;
@@ -675,12 +673,12 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
            for($i = 0; $i<count($szukane); $i++){
         $search = "'%".$szukane[$i]."%'";
     $sql = "SELECT * FROM obywatele WHERE imie LIKE $search or nazwisko LIKE $search or id LIKE $search";
-        mysqli_set_charset($polaczenie, "utf8");
-        $result = mysqli_query($polaczenie, $sql);
-        $wyniki = mysqli_num_rows($result);
+    $stmt = $db->prepare($sql);
+            $stmt->execute();
+        $wyniki = $stmt->rowCount();
            if($wyniki>0){
          echo '<span class="wyniki2">'.'Wyniki: '.$wyniki.'</span>';
-             while($row = mysqli_fetch_array($result)){
+             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                echo '<a href="ob_wspolne.php?id='.$row['id'].'">
             <div class="karta col-md-3">
                 <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -705,10 +703,11 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
     $wiecej = $_GET['wiecej'] ?? 'False'; 
     if($sort == 'najgorszy'){
         $sql = "SELECT * FROM obywatele ORDER BY suma_ocen/ilosc_ocen ASC";
-        $result = mysqli_query($polaczenie, $sql);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
         if($wiecej != 'True'){
             for($i = 1; $i <= 14; $i++){
-                   $row = mysqli_fetch_array($result);
+                   $row =  $stmt->fetch(PDO::FETCH_ASSOC);
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -721,7 +720,7 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
             echo '<a href="index.php?lista='.$sort.'&wiecej=True"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Rozwin listę</h1></div></a>';
         }
         else{
-           while($row = mysqli_fetch_array($result)){
+           while($row =  $stmt->fetch(PDO::FETCH_ASSOC)){
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -737,10 +736,11 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
         } 
         elseif($sort == 'najlepszy'){
             $sql = "SELECT * FROM obywatele ORDER BY suma_ocen/ilosc_ocen DESC";
-            $result = mysqli_query($polaczenie, $sql);
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
         if($wiecej != 'True'){
             for($i = 1; $i <= 14; $i++){
-                   $row = mysqli_fetch_array($result);
+                   $row = $stmt->fetch(PDO::FETCH_ASSOC);
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -753,7 +753,7 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
             echo '<a href="index.php?lista='.$sort.'&wiecej=True"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Rozwin listę</h1></div></a>';
         }
         else{
-           while($row = mysqli_fetch_array($result)){
+           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -769,10 +769,11 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
             } 
     else{
         $sql = "SELECT * FROM obywatele ORDER BY id ASC";
-        $result = mysqli_query($polaczenie, $sql);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
         if($wiecej != 'True'){
             for($i = 1; $i <= 14; $i++){
-                   $row = mysqli_fetch_array($result);
+                   $row = $stmt->fetch(PDO::FETCH_ASSOC);
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
@@ -785,7 +786,7 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
             echo '<a href="index.php?lista='.$sort.'&wiecej=True"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Rozwin listę</h1></div></a>';
         }
         else{
-           while($row = mysqli_fetch_array($result)){
+           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
               echo '<a href="ob_wspolne.php?id='.$row['id'].'">
         <div class="karta col-md-3">
             <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';

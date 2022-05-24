@@ -6,23 +6,15 @@
 ?>
    <?php
     error_reporting(0);
-            $host = 'localhost';
-            $user = 'root';
-            $hasło = '';
-            $baza = 'kazachstan';
-			
-			$id_conn = mysqli_connect($host, $user, $hasło, $baza);
-			if (mysqli_connect_errno()){
-                echo "Błąd połączenia z MySQL " . $baza .  ' (' . mysqli_connect_errno() . ')';
-				exit;
-			}
+        require_once "connect.php";
 			$ocena = 0;
       	$ocena = $_POST['stars'];
 		$sql_sel="SELECT *
                         FROM obywatele WHERE id = '$id'
                      ;";
-		 $wynik = mysqli_query($id_conn, $sql_sel);
-		$row = mysqli_fetch_array($wynik);
+		$stmt = $db->prepare($sql_sel);
+    $stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
     $ocena_srednia = 0;
     if($row['suma_ocen'] != 0 and $row['ilosc_ocen'] != 0){
 		$ocena_srednia = $row['suma_ocen']/$row['ilosc_ocen'];
@@ -40,9 +32,10 @@
       echo '<script type="text/javascript">document.location = "index.php"; </script>';
 		}
     $sql_kom = "SELECT * FROM komentarze WHERE ob_id = '$id' ORDER BY data DESC;";
-    $wynik_kom = mysqli_query($id_conn, $sql_kom);
-    $ile_kom = $wynik_kom->num_rows;
-    $row_kom = mysqli_fetch_array($wynik_kom);
+    $stmt = $db->prepare($sql_kom);
+    $stmt->execute();
+    $ile_kom = $stmt->rowCount();
+    $row_kom = $stmt->fetch(PDO::FETCH_ASSOC);
    if($ile_kom < 1){
           echo '<div class="window" id="window4" style="width: 300px">
   <div class="title-bar" id="title-bar">
@@ -68,7 +61,7 @@ else{
   </div>
   <div class="window-body" id="window-body">'.'<span class="span_kom" onclick="komentarz()">'.'Dodaj własny komentarz'.'</span>'.'<br />'.'<br />'.
     $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.'<br />'.'<br />';
-            while ($row_kom = mysqli_fetch_array($wynik_kom)) {
+            while ($row_kom = $stmt->fetch(PDO::FETCH_ASSOC)) {
                  echo $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.'<br />'.'<br />';
 				}
     echo '</div></div>';       
@@ -107,9 +100,9 @@ else{
         }
     }
 $sql_dane = "SELECT * FROM obywatele WHERE id = '$id';";
-    mysqli_set_charset($id_conn, "utf8");
-    $wynik_dane = mysqli_query($id_conn, $sql_dane);
-    $row_dane = mysqli_fetch_array($wynik_dane);
+$stmt = $db->prepare($sql_dane);
+$stmt->execute();
+    $row_dane = $stmt->fetch(PDO::FETCH_ASSOC);
 echo '<div class="window" id="window7" style="width: 300px">
   <div class="title-bar" id="title-bar">
     <div class="title-bar-text"><i class="icon-export"></i> <span class="span_underline">D</span>ane personalne</div>
@@ -127,15 +120,6 @@ echo '<div class="window" id="window7" style="width: 300px">
     <h3 class="srednia">'.'<span class="span_data">'.'PLEC: '.'</span>'.$row_dane['plec'].'</h3>'.'
   </div>
 </div>';
-            if (!mysqli_query($id_conn, $sql_upd))
- 	    {
-             echo '' . mysqli_error($id_conn);
-             mysqli_close($id_conn)  # zamyka połączenie z bazą
-     	        or die("Nie można się rozłączyć z bazą MySQL!!");
-             exit;
-        }
-        mysqli_close($id_conn) 
-            or die("Nie można się rozłączyć z bazą MySQL!!"); 
             ?>
 			<?php
 

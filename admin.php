@@ -209,7 +209,7 @@
     <h1 id="h1_panel">Panel Admina</h1>
     <a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
     <?php
-    error_reporting(0);
+    //error_reporting(0);
         echo '<form action="admin.php" method="post">';
             echo '<h3 class="h3-admin">'.'Ilosc ocen: '.'</h3>';
             echo '<input type="number" min="1" name="ilosc_admin">';
@@ -220,11 +220,7 @@
             echo '<input type="submit" value="przeslij">';
             echo '</form>';
           // ZMIANY Z PANELU ADMINA 
-            $host = 'localhost';
-            $db_user = 'root';
-            $db_password = '';
-            $db_name = 'kazachstan';
-            $polaczenie = @ new mysqli($host, $db_user, $db_password, $db_name);   
+            require_once "connect.php";  
                    $id_admin = $_POST['id_admin'] ?? 0;
                     $suma_admin = $_POST['suma_admin'] ?? 0;
                     $ilosc_admin = $_POST['ilosc_admin'] ?? 0;  	
@@ -233,16 +229,23 @@
                        SET ilosc_ocen = $ilosc_admin, suma_ocen = $suma_admin
                      WHERE id  = $id_admin;
                     "; 
-        $rezultat = @$polaczenie->query($sql);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
     }
     // WYŚWIETLANIE OCEN
 		$sql2 = "SELECT * FROM obywatele"; 
-        $rezultat2 = @$polaczenie->query($sql2);
+        $stmt = $db->prepare($sql2);
+$stmt->execute();
       $wiecej = $_GET['wiecej'] ?? 'False';
     if($wiecej != 'True'){
        for($i = 1; $i <= 10; $i++){
-        $wiersz = mysqli_fetch_array($rezultat2);
-        $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+        $wiersz = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($wiersz['suma_ocen'] != null and $wiersz['ilosc_ocen'] != null){
+            $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+        }
+        else{
+            $ocena = null;
+        }
             $id = $wiersz['id'];
         if(is_nan($ocena)){
                    echo '<h4 onclick="window_pokaz('."'".$id."'".')">'.'Obywatel_'.$id.': '.'Brak'.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
@@ -254,10 +257,14 @@
         echo '<a href="admin.php?wiecej=True" id="a_wiecej"><h4 style="color: #969eff; margin: 0;">Pokaz wiecej...</h4></a>';
     }
     else{
-             while ($wiersz = mysqli_fetch_array($rezultat2)) {
-     $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+             while ($wiersz = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $id = $wiersz['id'];
-               $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+                if($wiersz['suma_ocen'] != null and $wiersz['ilosc_ocen'] != null){
+                    $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
+                }
+                else{
+                    $ocena = null;
+                }
                if(is_nan($ocena)){
                    echo '<h4 onclick="window_pokaz('.$id.')">'.'Obywatel_'.$id.': '.'Brak'.' - <a href="usun_ob.php?id='.$id.'">Usun</a></h4>';
                }
@@ -267,16 +274,17 @@
            }  
         echo '<a href="admin.php?wiecej=False" id="a_wiecej"><h4 style="color: #969eff; margin: 0;">Pokaz mniej...</h4></a>';
     }
-            mysqli_free_result($rezultat2);
     // KOMENTARZE - WYŚWIETLANIE
     $sql_count = "SELECT id FROM obywatele";
-    $wynik_count = mysqli_query($polaczenie, $sql_count);
-    $ile_ob = $wynik_count->num_rows;
+    $stmt = $db->prepare($sql_count);
+$stmt->execute();
+    $ile_ob = $stmt->rowCount();
 for($i = 1; $i<=$ile_ob; $i++){
   $sql_kom = "SELECT * FROM komentarze WHERE ob_id = '$i' ORDER BY data DESC;";
-    $wynik_kom = mysqli_query($polaczenie, $sql_kom);
-    $ile_kom = $wynik_kom->num_rows;
-    $row_kom = mysqli_fetch_array($wynik_kom);
+  $stmt = $db->prepare($sql_kom);
+  $stmt->execute();
+    $ile_kom = $stmt->rowCount();
+    $row_kom = $stmt->fetch(PDO::FETCH_ASSOC);
     if($ile_kom < 1){
       echo '<div class="window" id="window'.$i.'" style="width: 300px">
   <div class="title-bar" id="title-bar">
@@ -302,7 +310,7 @@ for($i = 1; $i<=$ile_ob; $i++){
   </div>
   <div class="window-body" id="window-body">'.'<br />'.
     $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.' '.'<a href="usuwanie_kom.php?id='.$row_kom['id'].'" class="window_a">'.'Usun'.'</a>'.'<br />'.'<br />';
-            while ($row_kom = mysqli_fetch_array($wynik_kom)) {
+            while ($row_kom = $stmt->fetch(PDO::FETCH_ASSOC)) {
                  echo $row_kom['tresc'].' - '.'<span class="span_data">'.$row_kom['data'].'</span>'.' '.'<a href="usuwanie_kom.php?id='.$row_kom['id'].'" class="window_a">'.'Usun'.'</a>'.'<br />'.'<br />';
 				}
     echo '</div></div>'; 
@@ -315,9 +323,9 @@ for($i = 1; $i<=$ile_ob; $i++){
         </script>';
     }
 }
-        mysqli_set_charset($polaczenie, "utf8");
     $sql_uwagi = "SELECT * FROM uwagi ORDER BY data DESC;";
-    $wynik_uwagi = mysqli_query($polaczenie, $sql_uwagi);
+    $stmt = $db->prepare($sql_uwagi);
+  $stmt->execute();
     echo '<h2>Uwagi</h2>';
     echo '<table><tbody align="Center">
         <tr class="tr1">
@@ -326,7 +334,7 @@ for($i = 1; $i<=$ile_ob; $i++){
             <td>podpis</td>
             <td>data</td>
         </tr>';
-            while($row = mysqli_fetch_array($wynik_uwagi)){
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $id = $row['id'];
                 echo'<tr height= "20">
 					<td>'.$row['id'].'</td>
@@ -347,14 +355,15 @@ for($i = 1; $i<=$ile_ob; $i++){
     $d_przeslano = $_POST['przeslano'] ?? null;
     if($d_przeslano == 'True'){
     if($d_imie != null and $d_nazwisko != null and $d_wiek != null and $d_plec != 'brak' and $d_narod != null){
-    mysqli_set_charset($polaczenie, "utf8");
     $sql_dodaj3 = "SELECT * FROM obywatele ORDER BY id DESC;";
-    $wynik_dodaj3 = mysqli_query($polaczenie, $sql_dodaj3);
-    $row_dodaj3 = mysqli_fetch_array($wynik_dodaj3);
+    $stmt = $db->prepare($sql_dodaj3);
+  $stmt->execute();
+    $row_dodaj3 = $stmt->fetch(PDO::FETCH_ASSOC);
     $nowe_id = $row_dodaj3['id']+1;
     $sql_dodaj = "INSERT INTO obywatele(id, imie, nazwisko, wiek, plec, narodowosc) 
     VALUES('$nowe_id','$d_imie', '$d_nazwisko', '$d_wiek', '$d_plec', '$d_narod');";
-    $wynik_dodaj = mysqli_query($polaczenie, $sql_dodaj);
+    $stmt = $db->prepare($sql_dodaj3);
+    $stmt->execute();
     header: 'Location: index.php';
     echo '<script type="text/javascript">document.location = "index.php"; </script>';
     }

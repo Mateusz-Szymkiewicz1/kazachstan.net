@@ -137,7 +137,6 @@ input[type=submit]{background:silver;box-shadow:inset -1px -1px #0a0a0a,inset 1p
 }
 
 #startbutton {
-  float: left; 
   display: inline-block;
   color: black;
   width: 90px;

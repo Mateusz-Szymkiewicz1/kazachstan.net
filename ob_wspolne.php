@@ -1,13 +1,10 @@
 <?php
 $id = $_GET['id'] ?? null;
-$host = 'localhost';
-            $user = 'root';
-            $hasło = '';
-            $baza = 'kazachstan';
-			$id_conn2 = mysqli_connect($host, $user, $hasło, $baza);
+require_once "connect.php";  
 		$sql_0 = "SELECT id FROM obywatele ORDER BY id DESC";
-		 $wynik_0 = mysqli_query($id_conn2, $sql_0);
-    $row_0 = mysqli_fetch_array($wynik_0);
+		$stmt = $db->prepare($sql_0);
+            $stmt->execute();
+    $row_0 = $stmt->fetch(PDO::FETCH_ASSOC);
 if($id < 1 or $id > $row_0['id']){
     echo '<script type="text/javascript">document.location = "index.php"; </script>';
 }
@@ -18,13 +15,9 @@ if($tresc != null and strlen($tresc) > 5){
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
         $responseData = json_decode($verifyResponse);
 if(preg_match('/^[A-Za-z ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*[A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ][A-Za-z0-9 ,.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]*$/', $tresc)){
-            $host = 'localhost';
-            $user = 'root';
-            $hasło = '';
-            $baza = 'kazachstan';
-			$id_conn2 = mysqli_connect($host, $user, $hasło, $baza);
 		$sql_komentarz = "INSERT INTO komentarze(ob_id, tresc, data) VALUES('$id', '$tresc', now());";
-		 $wynik = mysqli_query($id_conn2, $sql_komentarz);
+		$stmt = $db->prepare($sql_komentarz);
+            $stmt->execute();
     header: 'Location: index.php';
     echo '<script type="text/javascript">document.location = "index.php"; </script>';
 }

@@ -1,6 +1,8 @@
 <?php
-$host = "localhost";
-$db_user = "root";
-$db_password = "";
-$db_name = "kazachstan";
+try {
+    $db = new PDO("mysql:host=localhost;dbname=kazachstan", "root", "");
+}
+catch(PDOException $e) {
+    echo $e->getMessage() . " " . $e->getCode();
+}
 ?>

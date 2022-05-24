@@ -1,9 +1,4 @@
-<html>
-  <head>
-      <title>Usuwanie sesji</title>
-  </head>
-  <body>
-   <?php
+<?php
     if(!isset($_SERVER['HTTP_REFERER'])){
     header('Location: index.php');
     exit;
@@ -16,5 +11,3 @@
     echo '<script>'.'window.location.replace("index.php");'.'</script>';
     exit;
 ?>
-</body>
-</html>
