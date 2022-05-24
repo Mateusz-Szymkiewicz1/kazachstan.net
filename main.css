@@ -1,5 +1,4 @@
-<style>
-    :root {
+:root {
         --border-raised-outer: inset -1px -1px #0a0a0a,
             inset 1px 1px #fff;
         --border-raised-inner: inset -2px -2px #808080,
@@ -443,4 +442,3 @@ input[type=range]{-webkit-appearance:none;background:transparent;width:140px;}in
         color: #0000ff;
         cursor: pointer;
     }
-</style>
