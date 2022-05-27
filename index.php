@@ -258,6 +258,13 @@ require_once "connect.php";
     $wiecej = $_GET['wiecej'] ?? 'False'; 
     if($sort == 'najgorszy'){
         $sql = "SELECT * FROM obywatele ORDER BY suma_ocen/ilosc_ocen ASC";
+    }
+    else if($sort == 'najlepszy'){
+        $sql = "SELECT * FROM obywatele ORDER BY suma_ocen/ilosc_ocen DESC";
+    }
+    else{
+        $sql = "SELECT * FROM obywatele";
+    }
         $stmt = $db->prepare($sql);
         $stmt->execute();
         if($wiecej != 'True'){
@@ -289,75 +296,9 @@ require_once "connect.php";
         }
                $id = 0;
         } 
-        elseif($sort == 'najlepszy'){
-            $sql = "SELECT * FROM obywatele ORDER BY suma_ocen/ilosc_ocen DESC";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-        if($wiecej != 'True'){
-            for($i = 1; $i <= 14; $i++){
-                   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-              echo '<a href="ob_wspolne.php?id='.$row['id'].'">
-        <div class="karta col-md-3">
-            <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
-           require "gwiazdki.php";  
-           echo '
-            </span><span class="reszta">Więcej informacji..</span>
-        </div>
-    </a>';
-            }
-            echo '<a href="index.php?lista='.$sort.'&wiecej=True"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Rozwin listę</h1></div></a>';
-        }
-        else{
-           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-              echo '<a href="ob_wspolne.php?id='.$row['id'].'">
-        <div class="karta col-md-3">
-            <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
-           require "gwiazdki.php";  
-           echo '
-            </span><span class="reszta">Więcej informacji..</span>
-        </div>
-    </a>';
-           }
-          echo '<a href="index.php?lista='.$sort.'"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Zwin listę</h1></div></a>';   
-        }
-            $id = 0;
-            } 
-    else{
-        $sql = "SELECT * FROM obywatele ORDER BY id ASC";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        if($wiecej != 'True'){
-            for($i = 1; $i <= 14; $i++){
-                   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-              echo '<a href="ob_wspolne.php?id='.$row['id'].'">
-        <div class="karta col-md-3">
-            <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
-           require "gwiazdki.php";  
-           echo '
-            </span><span class="reszta">Więcej informacji..</span>
-        </div>
-    </a>';
-            }
-            echo '<a href="index.php?lista='.$sort.'&wiecej=True"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Rozwin listę</h1></div></a>';
-        }
-        else{
-           while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-              echo '<a href="ob_wspolne.php?id='.$row['id'].'">
-        <div class="karta col-md-3">
-            <h1 class="imie">Obywatel_'.$row['id'].'</h1><i class="icon-user-1"></i><span class="ocena">Ocena:';
-           require "gwiazdki.php";  
-           echo '
-            </span><span class="reszta">Więcej informacji..</span>
-        </div>
-    </a>';
-           } 
-        echo '<a href="index.php?lista='.$sort.'"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Zwin listę</h1></div></a>';
-        }
-    } 
                echo '<div class="karta col-md-3" id="karta-kontakt">
         <h3>Zauważyłes buga na stronie? Chcesz wsypac swojego sąsiada? Napisz do nas przez<br /> <a class="a-uwaga" href="uwaga.php" target="_blank">formularz kontaktowy</a>, lub skontaktuj sie z nami <span class="span_kontakt" onclick="wysun_kontakt()">bezposrednio</span><span id="span_bezposrednio"><br /> <i class="icon-mail"></i> - kazachstan @ gov.kz<br /><br /><i class="icon-info"></i> - Plac Lenina 12, Astana</span></h3><img src="x.png" height="20px" width="20px" id="x_icon" onclick="schowaj_kontakt()">
                  </div>'.'<br />'.'<br />';
-       }
        ?>
      <?php
                 if($_SESSION['expire'] < $_SESSION['time']){
