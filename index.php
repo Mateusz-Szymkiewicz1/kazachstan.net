@@ -200,7 +200,7 @@ require_once "connect.php";
         <input type="submit" value="Sortuj">
     </form>
     <form action="index.php" method="get" class="search_form">
-        <input type="search" placeholder="Szukaj..." name="szukane" maxlength="20" spellcheck="false" pattern="[A-Za-z0-9_ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+">
+        <input type="search" placeholder="Szukaj..." name="szukane" maxlength="20" spellcheck="false" pattern="[A-Za-z0-9_ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+" autocomplete="off">
         <input type="submit" value="Szukaj">
     </form>
     <div class="div_hymn">
