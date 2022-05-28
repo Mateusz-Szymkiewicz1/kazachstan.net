@@ -26,7 +26,7 @@ else{
   <div class="title-bar">
     <div class="title-bar-text">Błąd<i class="icon-attention"></i></div>
     <div class="title-bar-controls">
-      <button aria-label="Minimize"></button>
+      <button aria-label="Minimize" onclick="error_close()"></button>
       <button aria-label="Maximize"></button>
       <button aria-label="Close" onclick="error_close()"></button>
     </div>
@@ -83,7 +83,7 @@ else{
     <div class="title-bar-text"><i class="icon-star"></i> <span class="span_underline">W</span>ystaw opinię</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('window2')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>
@@ -133,8 +133,8 @@ else{
   <div class="title-bar">
     <div class="title-bar-text"><span class="span_underline">D</span>odaj komentarz</div>
     <div class="title-bar-controls">
-      <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Minimize" onclick="komentarz_close()"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('window5')"></button>
       <button aria-label="Close" onclick="komentarz_close()"></button>
     </div>
   </div>

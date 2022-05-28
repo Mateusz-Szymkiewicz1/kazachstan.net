@@ -1,7 +1,7 @@
 <?php
     session_start();
 error_reporting(0);
-   setcookie('loader', 'True', time() + (30 * 60), "/");
+setcookie('loader', 'True', time() + (30 * 60), "/");
 require_once "connect.php";  
        $now = time();
     // SYSTEM LOGOWANIA
@@ -140,6 +140,7 @@ require_once "connect.php";
         }
         function ua_hide(){
             document.getElementById("ua").style.display = 'none';
+            document.cookie = "ua_closed=True; expires=Thu, 18 Dec 2030 12:00:00 UTC";
         }
     </script>
     <?php
@@ -159,7 +160,7 @@ require_once "connect.php";
   <div class="title-bar">
     <div class="title-bar-text"><i class="icon-attention"></i> Uwaga<span class="span_font"></span></div>
     <div class="title-bar-controls">
-      <button aria-label="Minimize"></button>
+      <button aria-label="Minimize" onclick="cookie_close()"></button>
       <button aria-label="Maximize"></button>
       <button aria-label="Close" onclick="cookie_close()"></button>
     </div>
@@ -189,7 +190,11 @@ require_once "connect.php";
        }
        ?>
        <br /><br /><br /><br /><br /><br />
-       <div class="ua" id="ua">Uwaga! Rząd Kazachstanu, oraz podmiot kontroli obywateli "kazachstan.net" nie wspierają działan wojskowych rosjan na terenach Ukrainy. <span class="span_ua" onclick="ua_hide()">zamknij</span></div>
+       <?php
+       if(!isset($_COOKIE['ua_closed'])){
+         echo '<div class="ua" id="ua">Uwaga! Rząd Kazachstanu, oraz podmiot kontroli obywateli "kazachstan.net" nie wspierają działan wojskowych rosjan na terenach Ukrainy. <span class="span_ua" onclick="ua_hide()">zamknij</span></div>';
+       }  
+        ?>
     <form action="index.php" method="get" class="form">
         <select id="lista" name="lista">
            <option value="domyslnie">Sortuj od...</option>

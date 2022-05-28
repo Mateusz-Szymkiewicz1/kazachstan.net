@@ -1,10 +1,4 @@
 <?php
-   // if(!isset($_SERVER['HTTP_REFERER'])){
-   // header('Location: index.php');
-   // exit;
-//}
-?>
-   <?php
     error_reporting(0);
         require_once "connect.php";
 			$ocena = 0;
