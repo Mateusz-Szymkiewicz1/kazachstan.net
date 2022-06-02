@@ -25,124 +25,14 @@ require_once "connect.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale" />
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="res/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
-    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
       <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+      <script src="js/index.js"></script>
 </head>
-    <script type="text/javascript">
-        function pojawienie2(){
-              document.getElementById("wrapper").style.display = "block";
-        }
-        function pojawienie(){
-             $("#loader").fadeOut(600);
-           window.setTimeout('pojawienie2()', 600);
-        }
-        function loader(){   
-            document.getElementById("loader").style.display = "block";
-            window.setTimeout('pojawienie()', 1000);
-        }
-         function cookie_close(){   
-            document.getElementById("window").style.display = "none";
-             document.cookie = "zgoda=True; expires=Thu, 18 Dec 2030 12:00:00 UTC";
-        }
-         $( function() {
-    $( "#window" ).draggable();
-  } );
-        var piosenki = ['song1.mp3', 'song2.mp3','song3.mp3','song4.mp3','song5.mp3'];
-        var tytuly = ['papers_please.mp3', 'hymn.mp3','alarm.mp3','ussr.mp3','szpaku.mp3'];
-        var grane = 1;
-        function granie(){
-            document.getElementById("play").style.display = "none";
-            document.getElementById("pauza").style.display = "block";
-            document.getElementById("pauza").style.marginLeft = "1vw";
-            document.getElementById("marque_span").innerHTML = "Teraz gramy: "+tytuly[grane-1];
-            document.getElementById('audio_player').play();
-        }
-        function pauza_granie(){
-            document.getElementById('audio_player').pause();
-            document.getElementById("marque_span").innerHTML = "Zapauzowano";
-        document.getElementById('play').style.display = "block";
-            document.getElementById('pauza').style.display = "none";
-        }
-        function next(){
-            if(grane<piosenki.length){
-             document.getElementById('audio_player').pause();
-            grane = grane+1;
-             document.getElementById('audio_player').src = 'audio/song'+grane+'.mp3';
-             document.getElementById("play").style.display = "none";
-            document.getElementById("pauza").style.display = "block";
-            document.getElementById("pauza").style.marginLeft = "1vw";
-            document.getElementById("marque_span").innerHTML = "Teraz gramy: "+tytuly[grane-1];
-            document.getElementById('audio_player').play();
-            }
-            else{
-                document.getElementById('audio_player').pause();
-            grane = 1;
-             document.getElementById('audio_player').src = 'audio/song'+grane+'.mp3';
-             document.getElementById("play").style.display = "none";
-            document.getElementById("pauza").style.display = "block";
-            document.getElementById("pauza").style.marginLeft = "1vw";
-           document.getElementById("marque_span").innerHTML = "Teraz gramy: "+tytuly[grane-1];              
-            document.getElementById('audio_player').play(); 
-            }
-        }
-        function previous(){
-            if(grane>1){
-             document.getElementById('audio_player').pause();
-            grane = grane-1;
-             document.getElementById('audio_player').src = 'audio/song'+grane+'.mp3';
-             document.getElementById("play").style.display = "none";
-            document.getElementById("pauza").style.display = "block";
-            document.getElementById("pauza").style.marginLeft = "1vw";
-                 document.getElementById("marque_span").innerHTML = "Teraz gramy: "+tytuly[grane-1];
-            document.getElementById('audio_player').play();
-            }
-            else{
-                document.getElementById('audio_player').pause();
-            grane = piosenki.length;
-             document.getElementById('audio_player').src = 'audio/song'+grane+'.mp3';
-             document.getElementById("play").style.display = "none";
-            document.getElementById("pauza").style.display = "block";
-            document.getElementById("pauza").style.marginLeft = "1vw";
-                 document.getElementById("marque_span").innerHTML = "Teraz gramy: "+tytuly[grane-1];
-            document.getElementById('audio_player').play(); 
-            }
-        }
-    function funkcja_volume(){
-    var input = document.getElementById("range");
-    var volume = document.getElementById("range").value/100;
-        document.getElementById("audio_player").volume = volume;
-    }
-        function show_volume(){
-        document.getElementById("div_range").style.display = "block";
-        document.getElementById("btn_volume2").style.display = "block";
-        document.getElementById("btn_volume").style.display = "none";
-        document.getElementById("btn_volume2").style.marginLeft = "0px";
-        }
-         function hide_volume(){
-        document.getElementById("div_range").style.display = "none";
-        document.getElementById("btn_volume").style.display = "block";
-        document.getElementById("btn_volume2").style.display = "none";
-      document.getElementById("btn_volume2").style.marginLeft = "-33px";
-        }
-        function wysun_kontakt(){
-            document.getElementById("karta-kontakt").style.height = "35vh";
-            document.getElementById("span_bezposrednio").style.display = "block";
-            document.getElementById("x_icon").style.display = "block";
-        }
-         function schowaj_kontakt(){
-            document.getElementById("karta-kontakt").style.height = "17vh";
-            document.getElementById("span_bezposrednio").style.display = "none";
-            document.getElementById("x_icon").style.display = "none";
-        }
-        function ua_hide(){
-            document.getElementById("ua").style.display = 'none';
-            document.cookie = "ua_closed=True; expires=Thu, 18 Dec 2030 12:00:00 UTC";
-        }
-    </script>
     <?php
     if(isset($_COOKIE['loader'])){
         echo '<style>'.'.loader{display: none;} .wrapper{display: block;}'.'</style>';
@@ -152,7 +42,7 @@ require_once "connect.php";
             echo '<body onload="loader()">';
     }
     ?>
-   <div class="loader" id="loader"><img src="loader.gif" height="200px" class="load-gif"></div>
+   <div class="loader" id="loader"><img src="res/loader.gif" height="200px" class="load-gif"></div>
    <div class="wrapper" id="wrapper">
    <?php 
        if(!isset($_COOKIE['zgoda'])){
@@ -209,13 +99,13 @@ require_once "connect.php";
         <input type="submit" value="Szukaj">
     </form>
     <div class="div_hymn">
-    <button class="play" id="play" onclick="granie()"><img src="play.jpg" height="22px" width='17px'></button>
-    <button class="pauza" id="pauza" onclick="pauza_granie()"><img src="pause.png" height="22px" width='17px'></button>
-    <button class="previous" id="previous" onclick="previous()"><img src="previous.png" height="22px" width='17px'></button>
+    <button class="play" id="play" onclick="granie()"><img src="res/play.jpg" height="22px" width='17px'></button>
+    <button class="pauza" id="pauza" onclick="pauza_granie()"><img src="res/pause.png" height="22px" width='17px'></button>
+    <button class="previous" id="previous" onclick="previous()"><img src="res/previous.png" height="22px" width='17px'></button>
   <audio src="audio/song1.mp3" id="audio_player" loop></audio>
         <div class="song"><div class="marque"><span class="marque_span" id="marque_span">Kazakh media player 2.0</span></div></div>
-   <button class="next" id="next" onclick="next()"><img src="next.png" height="22px" width='17px'></button>
-   <button class="btn_volume" id="btn_volume" onclick="show_volume()"><img src="volume.png" height="22px" width='17px'></button>
+   <button class="next" id="next" onclick="next()"><img src="res/next.png" height="22px" width='17px'></button>
+   <button class="btn_volume" id="btn_volume" onclick="show_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
         <button class="btn_volume" id="btn_volume2" onclick="hide_volume()"><img src="volume.png" height="22px" width='17px'></button>
         <div class="div_range" id="div_range">
   <input type="range" id="range" value="51.5" onmouseup="funkcja_volume()" />
@@ -249,7 +139,7 @@ require_once "connect.php";
             </a>'; 
            }
                               echo '<div class="karta col-md-3" id="karta-kontakt">
-        <h3>Zauważyłes buga na stronie? Chcesz wsypac swojego sąsiada? Napisz do nas przez<br /> <a class="a-uwaga" href="uwaga.php" target="_blank">formularz kontaktowy</a>, lub skontaktuj sie z nami <span class="span_kontakt" onclick="wysun_kontakt()">bezposrednio</span><span id="span_bezposrednio"><br /> <i class="icon-mail"></i> - kazachstan @ gov.kz<br /><br /><i class="icon-info"></i> - Plac Lenina 12, Astana</span></h3><img src="x.png" height="20px" width="20px" id="x_icon" onclick="schowaj_kontakt()">
+        <h3>Zauważyłes buga na stronie? Chcesz wsypac swojego sąsiada? Napisz do nas przez<br /> <a class="a-uwaga" href="uwaga.php" target="_blank">formularz kontaktowy</a>, lub skontaktuj sie z nami <span class="span_kontakt" onclick="wysun_kontakt()">bezposrednio</span><span id="span_bezposrednio"><br /> <i class="icon-mail"></i> - kazachstan @ gov.kz<br /><br /><i class="icon-info"></i> - Plac Lenina 12, Astana</span></h3><img src="res/x.png" height="20px" width="20px" id="x_icon" onclick="schowaj_kontakt()">
                  </div>'.'<br />'.'<br />';
             break;
         }
@@ -300,10 +190,10 @@ require_once "connect.php";
              echo '<a href="index.php?lista='.$sort.'"><div class="karta col-md-3" id="rozwin"><h1 class="imie" id="h1_rozwin">Zwin listę</h1></div></a>';
         }
                $id = 0;
-        } 
-               echo '<div class="karta col-md-3" id="karta-kontakt">
-        <h3>Zauważyłes buga na stronie? Chcesz wsypac swojego sąsiada? Napisz do nas przez<br /> <a class="a-uwaga" href="uwaga.php" target="_blank">formularz kontaktowy</a>, lub skontaktuj sie z nami <span class="span_kontakt" onclick="wysun_kontakt()">bezposrednio</span><span id="span_bezposrednio"><br /> <i class="icon-mail"></i> - kazachstan @ gov.kz<br /><br /><i class="icon-info"></i> - Plac Lenina 12, Astana</span></h3><img src="x.png" height="20px" width="20px" id="x_icon" onclick="schowaj_kontakt()">
+           echo '<div class="karta col-md-3" id="karta-kontakt">
+        <h3>Zauważyłes buga na stronie? Chcesz wsypac swojego sąsiada? Napisz do nas przez<br /> <a class="a-uwaga" href="uwaga.php" target="_blank">formularz kontaktowy</a>, lub skontaktuj sie z nami <span class="span_kontakt" onclick="wysun_kontakt()">bezposrednio</span><span id="span_bezposrednio"><br /> <i class="icon-mail"></i> - kazachstan @ gov.kz<br /><br /><i class="icon-info"></i> - Plac Lenina 12, Astana</span></h3><img src="res/x.png" height="20px" width="20px" id="x_icon" onclick="schowaj_kontakt()">
                  </div>'.'<br />'.'<br />';
+        } 
        ?>
      <?php
                 if($_SESSION['expire'] < $_SESSION['time']){

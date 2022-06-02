@@ -1,10 +1,4 @@
 <?php
-    if(!isset($_SERVER['HTTP_REFERER'])){
-    header('Location: index.php');
-    exit;
-}
-?>
-<?php
 require_once "connect.php"; 
 $id_kom = $_GET['id'];
 $sql = "DELETE FROM komentarze WHERE id = $id_kom";

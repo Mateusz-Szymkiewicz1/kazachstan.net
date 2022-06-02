@@ -9,7 +9,7 @@
     }
   @font-face{
                     font-family: 'font';
-                src: URL('font.otf') format('truetype');
+                src: URL('../res/font.otf') format('truetype');
             }
     body {
         background: #208c71;
@@ -63,7 +63,7 @@
     }
 
     .karta {
-        border: 2px solid #fff;
+        border: 3px solid #fff;
         height: 48vh;
         width: 16.5vw;
         float: left;

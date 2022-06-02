@@ -63,19 +63,19 @@ else{
         <title>Obywatel<?php echo ' '.$id ?> - Kazachstan.net</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="res/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale" />
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
-<link rel="stylesheet" href="ob.css">
-<link rel="stylesheet" href="k2.css">
+<link rel="stylesheet" href="css/ob.css">
+<link rel="stylesheet" href="css/k2.css">
    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
    <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
     </head>
-    <script src="skrypty.js"></script>
+    <script src="js/skrypty.js"></script>
 <body onload="startTime();startTime2()">
-<a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
+<a href="index.php"><img src="res/back.png" width="60px" height="60px" class="back"></a>
 <h1 class="kaza" >Obywatel_<?php echo $id ?></h1>
     <span class="text1">Witamy w kartotece obywatela numer <?php echo ' '.$id ?>. Możesz wystawic ocenę oraz napisac komentarz.</span>
     <div class="window" id="window2" style="width: 300px">
@@ -119,7 +119,7 @@ else{
     </div>
   </div>
   <div class="window-body">
-    <img src="alt.jpg" width="280px">
+    <img src="res/alt.jpg" width="280px">
   </div>
 </div>
      <div class="startbar">

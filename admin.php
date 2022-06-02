@@ -1,18 +1,11 @@
-<?php
-    if(!isset($_SERVER['HTTP_REFERER'])){
-    header('Location: index.php');
-    exit;
-}
-?>
 <html>
 <head>
     <title>Panel Admina - Kazachstan.net</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="res/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale" />
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
    <script type="text/javascript">
@@ -34,6 +27,10 @@
         ::selection{
             color: #208c71;
             background: #fff;
+        }
+        input::selection{
+            background: #969eff;
+            color: #fff;
         }
         h1 {
             margin-top: 18vh;
@@ -62,17 +59,12 @@
 
         input[type=submit] {
             outline: none;
-            border: none;
-            background-color: #2ecc71;
-            color: #fff;
+            background: silver;
+            box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px grey,inset 2px 2px #dfdfdf;
             padding: 6px;
             margin-left: 1.5vw;
             transition: all 0.4s ease;
             cursor: pointer;
-        }
-
-        input[type=submit]:hover {
-            background: #1dbb60;
         }
         .back{
            position: absolute;
@@ -113,9 +105,8 @@
 .window4 > .window-body{
       padding-top: 10px;
 }
-        @font-face{font-family:"Pixelated MS Sans Serif";font-style:normal;font-weight:400;src:url(ms_sans_serif.woff) format("woff");src:url(ms_sans_serif.woff2) format("woff2")}@font-face{font-family:"Pixelated MS Sans Serif";font-style:normal;font-weight:700;src:url(ms_sans_serif_bold.woff) format("woff");src:url(ms_sans_serif_bold.woff2) format("woff2")}
-.title-bar,.window,label,ul.tree-view{-webkit-font-smoothing:none;font-family:"DotGothic16",Arial;font-size:11px}.window{background:silver;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;padding:3px; z-index: 1;}.title-bar{align-items:center;background:linear-gradient(90deg,navy,#1084d0);display:flex;justify-content:space-between;padding:3px 4px 3px 5px}
-.title-bar-text{color:#fff;font-weight:700;letter-spacing:0;margin-right:24px}.title-bar-controls{display:flex}.title-bar-controls button{display:block; cursor: pointer; min-height:14px;min-width:16px;padding:0}.title-bar-controls button:active{padding:0}.title-bar-controls button:focus{outline:none}.title-bar-controls button[aria-label=Minimize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 0h6v2H0z'/%3E%3C/svg%3E");background-position:bottom 3px left 3px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Maximize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 0H0v9h9V0zM8 2H1v6h7V2z' fill='%23000'/%3E%3C/svg%3E");background-position:top 0.8px left 2px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Close]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E");background-position:top 2px left 3px;background-repeat:no-repeat;margin-left:2px}.status-bar{gap:1px;display:flex;margin:0 1px}.status-bar-field{box-shadow:inset -1px -1px #dfdfdf,inset 1px 1px grey;flex-grow:1;margin:0;padding:2px 3px}.window-body{margin:8px}fieldset{border:none;box-shadow:inset -1px -1px #fff,inset -2px 1px grey,inset 1px -2px grey,inset 2px 2px #fff;margin:0;padding:10px;padding-block-start:8px}legend{background:silver}
+.title-bar,.window{-webkit-font-smoothing:none;font-family:"DotGothic16";font-size:11px}.window{background:silver;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px grey,inset 2px 2px #fff;padding:3px; z-index: 1;}.title-bar{align-items:center;background:linear-gradient(90deg,navy,#1084d0);display:flex;justify-content:space-between;padding:3px 4px 3px 5px}
+.title-bar-text{color:#fff;font-weight:700;letter-spacing:0;margin-right:24px}.title-bar-controls{display:flex}.title-bar-controls button{display:block; cursor: pointer; min-height:14px;min-width:16px;padding:0}.title-bar-controls button:active{padding:0}.title-bar-controls button:focus{outline:none}.title-bar-controls button[aria-label=Minimize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 0h6v2H0z'/%3E%3C/svg%3E");background-position:bottom 3px left 3px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Maximize]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 0H0v9h9V0zM8 2H1v6h7V2z' fill='%23000'/%3E%3C/svg%3E");background-position:top 0.8px left 2px;background-repeat:no-repeat}.title-bar-controls button[aria-label=Close]{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E");background-position:top 2px left 3px;background-repeat:no-repeat;margin-left:2px}.window-body{margin:8px}
 .window{
    display: block;
     margin-top: 2vh;
@@ -129,7 +120,6 @@
     }
 ::-webkit-scrollbar-thumb {
         background-color: #dfdfdf;
-        box-shadow: var(--border-raised-outer), var(--border-raised-inner);
  }
         :root{
            --border-raised-outer: inset -1px -1px #0a0a0a,
@@ -207,9 +197,9 @@
 </head>
 <body>
     <h1 id="h1_panel">Panel Admina</h1>
-    <a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
+    <a href="index.php"><img src="res/back.png" width="60px" height="60px" class="back"></a>
     <?php
-    //error_reporting(0);
+    error_reporting(0);
         echo '<form action="admin.php" method="post">';
             echo '<h3 class="h3-admin">'.'Ilosc ocen: '.'</h3>';
             echo '<input type="number" min="1" name="ilosc_admin">';

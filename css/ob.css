@@ -4,6 +4,10 @@
         --border-raised-inner: inset -2px -2px #808080,
             inset 2px 2px #dfdfdf;
 } 
+  @font-face{
+                    font-family: 'font';
+                src: URL('../res/font.otf') format('truetype');
+            }
 ::selection{
         background: #fff;
         color: #208c71;
@@ -11,7 +15,7 @@
 body{
         background: #208c71;
         color: #fff;
-        font-family: 'DotGothic16';        
+        font-family: 'DotGothic16', 'font';        
     }
    h1{
         margin: 0;

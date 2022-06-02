@@ -3,10 +3,9 @@
         <title>Formularz kontaktowy - Kazachstan.net</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="res/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale" />
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
 <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
 <style>
     body{
@@ -22,57 +21,47 @@
     }
     input[type=text]{
         width: 240px;
-        border-radius: 8px;
-        outline: none;
-        border: none;
+        border: 0;
+        outline: 0;
+        box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
         height: 40px;
         margin-bottom: 1vw;
         padding: 1vw;
        transition: all 0.4s ease;
-        border-bottom: 3px solid #aaa;
     }
      textarea{
         width: 240px;
-        border-radius: 8px;
         outline: none;
         border: none;
         height: 125px;
         padding: 10px;
           transition: all 0.4s ease;
-          border-bottom: 3px solid #aaa;
          margin-bottom: 4vh;
          resize: none;
+         box-shadow:inset -1px -1px #fff,inset 1px 1px grey,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;
     }
     input[type=submit]{
         width: 200px;
-        border-radius: 8px;
-        outline: none;
-        border: none;
+        background: silver;
+        box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px grey,inset 2px 2px #dfdfdf;
         height: 35px;
         margin-bottom: 3vw;
         cursor: pointer;
         transition: all 0.4s ease;
     }
-    input[type=text]:focus,textarea:focus{
-        width: 280px;
-        background-color: #75dfc6;
-        color: #fff;
-           border-bottom: 3px solid #fff;
-    }
-    input[type=text]:focus::placeholder,textarea:focus::placeholder {
-  color: #fff;
-  opacity: 1;
+    input[type=text]::placeholder,textarea::placeholder {
+  color: #000;
 }
-    input[type=submit]:hover{
-         background-color: #75dfc6;
-        color: #fff;
-    }
     input{
         font-family: 'DotGothic16';
     }
      ::selection{
         background: #fff;
         color: #208c71;
+    }
+    textarea::selection, input[type=text]::selection{
+        background: #969eff;
+        color: #fff;
     }
       .back{
            position: absolute;
@@ -97,7 +86,7 @@
     </head>
     <body>
         <h1>Formularz Kontaktowy</h1>
-        <a href="index.php"><img src="back.png" width="60px" height="60px" class="back"></a>
+        <a href="index.php"><img src="res/back.png" width="60px" height="60px" class="back"></a>
      <form method="post" action="uwaga.php" id="frmContact" novalidate="novalidate">
       <textarea name="uwaga" placeholder="Wpisz uwagę (conajmniej 6 znaków)..." maxlength="160" spellcheck="false"></textarea><br />
       <input type="text" pattern="^[a-zA-Z0-9]*$" placeholder="Podpis (niewymagane)..." name="podpis" autocomplete="off" maxlength="28">
