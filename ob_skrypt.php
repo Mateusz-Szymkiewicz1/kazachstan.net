@@ -1,5 +1,5 @@
 <?php
-    error_reporting(0);
+   error_reporting(0);
         require_once "connect.php";
 			$ocena = 0;
       	$ocena = $_POST['stars'];
@@ -22,6 +22,8 @@
                      WHERE obywatele.id  = '$id' 
                       ;
                     ";
+                    $stmt = $db->prepare($sql_upd);
+                    $stmt->execute();
       header('Location: index.php');
       echo '<script type="text/javascript">document.location = "index.php"; </script>';
 		}
