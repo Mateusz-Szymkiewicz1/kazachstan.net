@@ -87,3 +87,12 @@ function ukryj_pm(){
     document.getElementById("time2").style.display = "none";
     document.getElementById("time").style.display = "block";
 }
+function menu_start(){
+    var x = window.getComputedStyle(document.getElementById("ms"), null).display;
+    if(x == "none"){
+        document.getElementById("ms").style.display = "block";
+    }
+    if(x == "block"){
+        document.getElementById("ms").style.display = "none";
+    }
+}

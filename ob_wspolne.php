@@ -124,7 +124,10 @@ else{
   </div>
 </div>
      <div class="startbar">
-  <div id="startbutton" class="startbutton-off">
+     <div class="menu_start" id="ms">
+         <div class="ms_side"></div>
+     </div>
+  <div id="startbutton" class="startbutton-off" onclick="menu_start()">
     <b>Start</b>
   </div>
 <div class="time" id="time" onclick="pokaz_pm()"></div>
