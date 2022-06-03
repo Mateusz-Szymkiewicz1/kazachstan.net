@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lut 2022, 17:54
+-- Czas generowania: 03 Cze 2022, 18:41
 -- Wersja serwera: 10.3.15-MariaDB
 -- Wersja PHP: 7.3.6
 
@@ -63,30 +63,21 @@ INSERT INTO `komentarze` (`id`, `ob_id`, `tresc`, `data`) VALUES
 (51, 1, '22', '2021-12-10 18:56:04'),
 (52, 1, '34', '2021-12-10 18:56:12'),
 (53, 1, 'sadasd', '2021-12-10 18:56:31'),
-(54, 1, 'Ä™Ä™Ä™we', '2021-12-10 18:56:54'),
 (55, 1, 'sadsadsadsad', '2021-12-10 18:57:01'),
 (56, 1, '34', '2021-12-10 18:57:07'),
 (57, 1, 'SDSAasd34', '2021-12-10 18:57:14'),
-(58, 1, 'Ä™Å›Ä…Ä‡Å¼ 234324 psdsdf', '2021-12-10 18:57:27'),
 (59, 7, 'asdasd', '2021-12-10 18:58:36'),
-(60, 7, 'sadeÄ™Ä™Ä™', '2021-12-10 18:58:47'),
-(61, 1, 'zarÄ…bisty', '2021-12-10 19:03:01'),
 (62, 1, 'sd', '2021-12-10 19:05:04'),
 (63, 1, 'a', '2021-12-10 19:05:10'),
 (64, 1, 'asdsad', '2021-12-10 19:08:14'),
 (65, 1, 'asdsadasd', '2021-12-10 19:08:26'),
 (66, 1, 'asdsadsad', '2021-12-10 19:09:21'),
 (67, 1, 'asdasdasdsad', '2021-12-10 19:12:48'),
-(68, 1, 'Ä™Å›Ä…Ä‡Åº', '2021-12-10 19:13:06'),
 (69, 1, 'asdasdsad', '2021-12-10 19:17:46'),
 (70, 1, 'asdasdsad', '2021-12-10 19:18:16'),
-(72, 5, 'Ä™Å›Ä…Ä‡ÅºÄ™', '2021-12-10 19:24:03'),
-(73, 2, 'Ä™Å›Ä…Ä‡ÅºÄ™', '2021-12-10 20:58:29'),
 (76, 8, '123456', '2021-12-11 11:11:33'),
-(77, 8, 'Ä™Å›Ä…Ä‡ÅºÄ™', '2021-12-11 11:11:41'),
 (80, 2, 'asdsadsadsad', '2021-12-11 15:20:48'),
 (83, 8, 'sadsadsadsad', '2021-12-11 15:31:09'),
-(84, 3, 'ja rÃ³wnieÅ¼', '2021-12-11 15:39:05'),
 (89, 5, 'sdfdsfsdfsdfsdf', '2021-12-12 18:32:32'),
 (90, 5, 'dsfsdfsdfsdf', '2021-12-12 18:32:39'),
 (91, 5, 'sdfdsfsdfsdf', '2021-12-12 18:32:45'),
@@ -106,7 +97,9 @@ INSERT INTO `komentarze` (`id`, `ob_id`, `tresc`, `data`) VALUES
 (108, 1, 'asdsadsadasd', '2022-01-08 20:04:58'),
 (115, 3, 'sadsadasd', '2022-01-09 16:11:32'),
 (116, 1, 'hgkvhjvgf hgvhtf', '2022-01-13 18:51:21'),
-(117, 1, 'bardzo fajny, lubie polecam cieplutko z rodzinkÄ…', '2022-01-26 15:20:54');
+(120, 2, 'ęśąćź', '2022-06-02 18:04:56'),
+(121, 2, 'ęśąćźó', '2022-06-02 18:05:26'),
+(122, 4, 'ęęęęąąąćććźźź', '2022-06-02 18:05:39');
 
 -- --------------------------------------------------------
 
@@ -130,15 +123,15 @@ CREATE TABLE `obywatele` (
 --
 
 INSERT INTO `obywatele` (`id`, `imie`, `nazwisko`, `wiek`, `plec`, `narodowosc`, `ilosc_ocen`, `suma_ocen`) VALUES
-(1, 'obywatel', 'jeden', 45, 'kobieta', 'gruzińska', 1, 4),
+(1, 'obywatel', 'jeden', 45, 'kobieta', 'gruzińska', 1, 5),
 (2, 'obywatel', 'dwa', 98, 'mężczyzna', 'kazachska', 1, 4),
 (3, 'obywatel', 'trzy', 12, 'kobieta', 'ukraińska', 1, 5),
-(4, 'obywatel', 'cztery', 67, 'mężczyzna', 'kazachska', 2, 6),
+(4, 'obywatel', 'cztery', 67, 'mężczyzna', 'kazachska', 3, 11),
 (5, 'obywatel', 'pięć', 34, 'mężczyzna', 'rosyjska', 6, 15),
 (6, 'obywatel', 'sześć', 37, 'kobieta', 'polska', 6, 18),
 (7, 'obywatel', 'siedem', 98, 'Kobieta', 'Kazachska', 2, 8),
 (8, 'obywatel', 'osiem', 34, 'kobieta', 'polska', 1, 4),
-(9, 'obywatel', 'dziewiec', 34, 'Kobieta', 'polska', 0, 0),
+(9, 'obywatel', 'dziewiec', 34, 'Kobieta', 'polska', 1, 5),
 (10, 'obywatel', 'nowak', 55, 'Mężczyzna', 'asdsadsd', 0, 0),
 (11, 'erfger', 'ertgffdg', 99, 'Kobieta', 'sdsf', 0, 0),
 (12, 'obywatelka', 'sdfdsfsdf', 56, 'Kobieta', 'dfgdfgfdgfd', 0, 0),
@@ -175,7 +168,8 @@ CREATE TABLE `uwagi` (
 
 INSERT INTO `uwagi` (`id`, `tresc`, `podpis`, `data`) VALUES
 (25, 'aasdasdsadsadsad', 'asdsad', '2022-01-08 20:02:50'),
-(26, 'xcvcxvcbv sdfdfdfds', '', '2022-01-13 18:54:13');
+(26, 'xcvcxvcbv sdfdfdfds', '', '2022-01-13 18:54:13'),
+(29, 'sdasdasd', 'asdasd', '2022-06-02 17:18:07');
 
 -- --------------------------------------------------------
 
@@ -232,7 +226,7 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `komentarze`
 --
 ALTER TABLE `komentarze`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT dla tabeli `obywatele`
@@ -244,7 +238,7 @@ ALTER TABLE `obywatele`
 -- AUTO_INCREMENT dla tabeli `uwagi`
 --
 ALTER TABLE `uwagi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
