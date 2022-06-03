@@ -106,7 +106,7 @@ require_once "connect.php";
         <div class="song"><div class="marque"><span class="marque_span" id="marque_span">Kazakh media player 2.0</span></div></div>
    <button class="next" id="next" onclick="next()"><img src="res/next.png" height="22px" width='17px'></button>
    <button class="btn_volume" id="btn_volume" onclick="show_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
-        <button class="btn_volume" id="btn_volume2" onclick="hide_volume()"><img src="volume.png" height="22px" width='17px'></button>
+        <button class="btn_volume" id="btn_volume2" onclick="hide_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
         <div class="div_range" id="div_range">
   <input type="range" id="range" value="51.5" onmouseup="funkcja_volume()" />
     <div class="triangle"></div>
