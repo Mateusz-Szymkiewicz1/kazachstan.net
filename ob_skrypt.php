@@ -122,11 +122,4 @@ echo '<div class="window" id="window7" style="width: 300px">
 if (!isset($_SESSION)) {
     session_start();
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $_SESSION['postdata'] = $_POST;
-    unset($_POST);
-    header("Location: http://localhost/fajny%20php/index.php");
-    exit;
-}
 ?>
