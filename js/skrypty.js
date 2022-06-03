@@ -90,9 +90,9 @@ function ukryj_pm(){
 function menu_start(){
     var x = window.getComputedStyle(document.getElementById("ms"), null).display;
     if(x == "none"){
-        document.getElementById("ms").style.display = "block";
+         $("#ms").fadeIn(250);
     }
     if(x == "block"){
-        document.getElementById("ms").style.display = "none";
+       $("#ms").fadeOut(250);
     }
 }
