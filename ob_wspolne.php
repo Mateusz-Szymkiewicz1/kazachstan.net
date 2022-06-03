@@ -9,6 +9,7 @@ if($id < 1 or $id > $row_0['id']){
     echo '<script type="text/javascript">document.location = "index.php"; </script>';
 }
 $tresc = $_POST['kom'] ?? null;
+// DODANIE KOMENTARZA
 if($tresc != null and strlen($tresc) > 5){
       if(!empty($_POST['g-recaptcha-response'])){
         $secret = '6Lei1pUdAAAAAPPmDOFgJZZHVepP1w7fiYY_QrLz';

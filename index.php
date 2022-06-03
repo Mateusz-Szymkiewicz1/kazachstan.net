@@ -20,6 +20,7 @@ require_once "connect.php";
                     }
 ?>
 <html>
+
 <head>
     <title>Kazachstan.net</title>
     <meta charset="UTF-8">
@@ -30,10 +31,10 @@ require_once "connect.php";
     <link rel="stylesheet" href="fontello-013dd3c1/css/fontello.css" type="text/css">
     <link rel="stylesheet" href="css/main.css" type="text/css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-      <script src="js/index.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="js/index.js"></script>
 </head>
-    <?php
+<?php
     if(isset($_COOKIE['loader'])){
         echo '<style>'.'.loader{display: none;} .wrapper{display: block;}'.'</style>';
             echo '<body>';
@@ -42,9 +43,9 @@ require_once "connect.php";
             echo '<body onload="loader()">';
     }
     ?>
-   <div class="loader" id="loader"><img src="res/loader.gif" height="200px" class="load-gif"></div>
-   <div class="wrapper" id="wrapper">
-   <?php 
+<div class="loader" id="loader"><img src="res/loader.gif" height="200px" class="load-gif"></div>
+<div class="wrapper" id="wrapper">
+    <?php 
        if(!isset($_COOKIE['zgoda'])){
    echo '<div class="window" id="window" style="width: 300px">
   <div class="title-bar">
@@ -70,7 +71,7 @@ require_once "connect.php";
          echo '<span class="text1">Witamy w rządowym systemie republiki kazachskiej służącym inwigilowaniu mieszkanców naszych pięknych ziem. Zaloguj się po więcej informacji.</span>'; 
        }
        ?>
-        <?php
+    <?php
        if($_SESSION['zalogowany'] = 'True' and $_SESSION['expire'] > $now ){
             echo '<a href="usuwanie.php"><div class="zaloguj">Wyloguj</div></a>';
             echo '<a href="admin.php" target="_blank"><div class="admin_btn">Panel Admina</div></a>';
@@ -79,18 +80,18 @@ require_once "connect.php";
       echo '<a href="logowanie.php"><div class="zaloguj">Zaloguj</div></a>';
        }
        ?>
-       <br /><br /><br /><br /><br /><br />
-       <?php
+    <br /><br /><br /><br /><br /><br />
+    <?php
        if(!isset($_COOKIE['ua_closed'])){
          echo '<div class="ua" id="ua">Uwaga! Rząd Kazachstanu, oraz podmiot kontroli obywateli "kazachstan.net" nie wspierają działan wojskowych rosjan na terenach Ukrainy. <span class="span_ua" onclick="ua_hide()">zamknij</span></div>';
        }  
         ?>
     <form action="index.php" method="get" class="form">
         <select id="lista" name="lista">
-           <option value="domyslnie">Sortuj od...</option>
+            <option value="domyslnie">Sortuj od...</option>
             <option value="domyslnie">Domyślnie</option>
-                <option value="najlepszy">Od najlepszego</option>
-                <option value="najgorszy">Od najgorszego</option>
+            <option value="najlepszy">Od najlepszego</option>
+            <option value="najgorszy">Od najgorszego</option>
         </select>
         <input type="submit" value="Sortuj">
     </form>
@@ -99,23 +100,25 @@ require_once "connect.php";
         <input type="submit" value="Szukaj">
     </form>
     <div class="div_hymn">
-    <button class="play" id="play" onclick="granie()"><img src="res/play.jpg" height="22px" width='17px'></button>
-    <button class="pauza" id="pauza" onclick="pauza_granie()"><img src="res/pause.png" height="22px" width='17px'></button>
-    <button class="previous" id="previous" onclick="previous()"><img src="res/previous.png" height="22px" width='17px'></button>
-  <audio src="audio/song1.mp3" id="audio_player" loop></audio>
-        <div class="song"><div class="marque"><span class="marque_span" id="marque_span">Kazakh media player 2.0</span></div></div>
-   <button class="next" id="next" onclick="next()"><img src="res/next.png" height="22px" width='17px'></button>
-   <button class="btn_volume" id="btn_volume" onclick="show_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
+        <button class="play" id="play" onclick="granie()"><img src="res/play.jpg" height="22px" width='17px'></button>
+        <button class="pauza" id="pauza" onclick="pauza_granie()"><img src="res/pause.png" height="22px" width='17px'></button>
+        <button class="previous" id="previous" onclick="previous()"><img src="res/previous.png" height="22px" width='17px'></button>
+        <audio src="audio/song1.mp3" id="audio_player" loop></audio>
+        <div class="song">
+            <div class="marque"><span class="marque_span" id="marque_span">Kazakh media player 2.0</span></div>
+        </div>
+        <button class="next" id="next" onclick="next()"><img src="res/next.png" height="22px" width='17px'></button>
+        <button class="btn_volume" id="btn_volume" onclick="show_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
         <button class="btn_volume" id="btn_volume2" onclick="hide_volume()"><img src="res/volume.png" height="22px" width='17px'></button>
         <div class="div_range" id="div_range">
-  <input type="range" id="range" value="51.5" onmouseup="funkcja_volume()" />
-    <div class="triangle"></div>
-            </div>
+            <input type="range" id="range" value="51.5" onmouseup="funkcja_volume()" />
+            <div class="triangle"></div>
+        </div>
     </div>
     <br /><br /><br />
     <?php
-    require_once "connect.php";
     $sort = $_GET['lista'] ?? 'domyslnie'; 
+    // SZUKANIE W BAZIE
        if(isset($_GET['szukane'])){
                $szukane = explode(' ', $_GET['szukane']) ?? null;
        }
@@ -149,6 +152,7 @@ require_once "connect.php";
            }
        }
        else{
+    // SORTOWANIE
     $id = 0;
     $wiecej = $_GET['wiecej'] ?? 'False'; 
     if($sort == 'najgorszy'){
@@ -162,6 +166,7 @@ require_once "connect.php";
     }
         $stmt = $db->prepare($sql);
         $stmt->execute();
+           // WIĘCEJ - MNIEJ
         if($wiecej != 'True'){
             for($i = 1; $i <= 14; $i++){
                    $row =  $stmt->fetch(PDO::FETCH_ASSOC);
@@ -195,11 +200,12 @@ require_once "connect.php";
                  </div>'.'<br />'.'<br />';
         } 
        ?>
-     <?php
+    <?php
                 if($_SESSION['expire'] < $_SESSION['time']){
                         session_destroy();
                     }
     ?>
-    </div>
+</div>
 </body>
+
 </html>

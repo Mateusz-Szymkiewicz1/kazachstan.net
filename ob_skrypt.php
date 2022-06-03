@@ -3,9 +3,7 @@
         require_once "connect.php";
 			$ocena = 0;
       	$ocena = $_POST['stars'];
-		$sql_sel="SELECT *
-                        FROM obywatele WHERE id = '$id'
-                     ;";
+		$sql_sel= "SELECT * FROM obywatele WHERE id = '$id';";
 		$stmt = $db->prepare($sql_sel);
     $stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -13,6 +11,7 @@
     if($row['suma_ocen'] != 0 and $row['ilosc_ocen'] != 0){
 		$ocena_srednia = $row['suma_ocen']/$row['ilosc_ocen'];
     }
+// DODANIE OCENY
 		if($ocena > 0 and !isset($_COOKIE[$id])){
             setcookie($id, 'True', time() + (86400 * 30), "/");
 			$p1 = $row['ilosc_ocen']+1;
@@ -27,6 +26,7 @@
       header('Location: index.php');
       echo '<script type="text/javascript">document.location = "index.php"; </script>';
 		}
+// WYŚWIETLANIE KOMENTARZY
     $sql_kom = "SELECT * FROM komentarze WHERE ob_id = '$id' ORDER BY data DESC;";
     $stmt = $db->prepare($sql_kom);
     $stmt->execute();
@@ -62,6 +62,7 @@ else{
 				}
     echo '</div></div>';       
 }
+// WYŚWIETLANIE OCEN
     if(fmod($ocena_srednia,1) == 0.0){
          echo '<div class="window" id="window" style="width: 300px">
   <div class="title-bar" id="title-bar">
@@ -95,8 +96,8 @@ else{
                echo '<h2 class="srednia">'.'Ocena: '.round($ocena_srednia, 2).'</h2>'.'</div></div>'; 
         }
     }
-$sql_dane = "SELECT * FROM obywatele WHERE id = '$id';";
-$stmt = $db->prepare($sql_dane);
+// WYŚWIETLANIE DANYCH
+$stmt = $db->prepare($sql_sel);
 $stmt->execute();
     $row_dane = $stmt->fetch(PDO::FETCH_ASSOC);
 echo '<div class="window" id="window7" style="width: 300px">
