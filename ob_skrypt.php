@@ -38,7 +38,7 @@
     <div class="title-bar-text"><i class="icon-mail"></i> <span class="span_underline">K</span>omentarze.exe ('.$ile_kom.')</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('."'window4'".')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>
@@ -51,7 +51,7 @@ else{
     <div class="title-bar-text"><i class="icon-mail"></i> <span class="span_underline">K</span>omentarze.exe ('.$ile_kom.')</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('."'window4'".')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>
@@ -68,7 +68,7 @@ else{
     <div class="title-bar-text"><i class="icon-thumbs-up-alt"></i> <span class="span_underline">O</span>cena obywatela</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('."'window'".')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>
@@ -83,7 +83,7 @@ else{
     <div class="title-bar-text"><i class="icon-thumbs-up-alt"></i> <span class="span_underline">O</span>cena obywatela</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('."'window'".')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>
@@ -104,7 +104,7 @@ echo '<div class="window" id="window7" style="width: 300px">
     <div class="title-bar-text"><i class="icon-export"></i> <span class="span_underline">D</span>ane personalne</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('."'window7'".')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>

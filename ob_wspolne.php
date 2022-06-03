@@ -114,7 +114,7 @@ else{
     <div class="title-bar-text"><i class="icon-eye-off"></i> zdj.jpg</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
+      <button aria-label="Maximize" onclick="komentarz_max('window3')"></button>
       <button aria-label="Close"></button>
     </div>
   </div>

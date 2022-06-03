@@ -59,13 +59,19 @@ function komentarz(){
   document.getElementById("window5").style.display = 'block';
 }
 function komentarz_max(){
-    // MOŻLIWE ŻE NIE DZIAŁA NA WYŻSZYCH ROZDZIELCZOŚCIACH - DO SPRAWDZENIA
-    //if(document.getElementById(arguments[0]).style.transform == 'scale(1.3)'){
-   //     document.getElementById(arguments[0]).style.transform = 'scale(1)';
-    //}
-   // else{
-   //   document.getElementById(arguments[0]).style.transform = 'scale(1.3)';  
-   // }
+    // MOŻLIWE ŻE NIE DZIAŁA NA WSZYSTKICH ROZDZIELCZOŚCIACH - DO SPRAWDZENIA
+    if(document.getElementById(arguments[0]).style.transform >= 'scale(1.3)'){
+        document.getElementById(arguments[0]).style.transform = '';
+    }
+    else{
+      var x = window.matchMedia("(min-width: 1500px)");
+      if (x.matches){
+        document.getElementById(arguments[0]).style.transform = 'scale(1.5)';  
+      }
+      else{
+        document.getElementById(arguments[0]).style.transform = 'scale(1.3)';  
+      }
+    }
 }
 function komentarz_close(){
   document.getElementById("window5").style.display = 'none';
