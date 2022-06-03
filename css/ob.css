@@ -266,3 +266,6 @@ h3{
 #ms{
     display: none;
 }
+.window{
+    transition: transform 0.2s ease;
+}
