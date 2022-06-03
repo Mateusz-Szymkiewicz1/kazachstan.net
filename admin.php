@@ -199,7 +199,7 @@
     <h1 id="h1_panel">Panel Admina</h1>
     <a href="index.php"><img src="res/back.png" width="60px" height="60px" class="back"></a>
     <?php
-    error_reporting(0);
+    //error_reporting(0);
         echo '<form action="admin.php" method="post">';
             echo '<h3 class="h3-admin">'.'Ilosc ocen: '.'</h3>';
             echo '<input type="number" min="1" name="ilosc_admin">';
@@ -230,7 +230,7 @@ $stmt->execute();
     if($wiecej != 'True'){
        for($i = 1; $i <= 10; $i++){
         $wiersz = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($wiersz['suma_ocen'] != null and $wiersz['ilosc_ocen'] != null){
+        if($wiersz['suma_ocen'] != 0 and $wiersz['ilosc_ocen'] != 0){
             $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
         }
         else{
@@ -249,7 +249,7 @@ $stmt->execute();
     else{
              while ($wiersz = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $id = $wiersz['id'];
-                if($wiersz['suma_ocen'] != null and $wiersz['ilosc_ocen'] != null){
+                if($wiersz['suma_ocen'] != 0 and $wiersz['ilosc_ocen'] != 0){
                     $ocena = round($wiersz['suma_ocen']/$wiersz['ilosc_ocen'], 2);
                 }
                 else{
