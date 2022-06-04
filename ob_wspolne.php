@@ -128,12 +128,12 @@ else{
          <div class="ms_side"></div>
          <ul>
              <li><img src="res/icon1.png"><span class="span_li">Obywatel <?php echo $id; ?></span></li>
-             <?php $id2 = $id+1; echo '<a href="ob_wspolne.php?id='.$id2.'">';?><li id="li2"><img src="res/icon3.png"><span class="span_li">Następny ob.</span></li></a>
-         <?php $id3 = $id-1; echo '<a href="ob_wspolne.php?id='.$id3.'">';?><li id="li3"><img src="res/icon3.png"><span class="span_li">Poprzedni ob.</span></li></a>
-             <a href="logowanie.php"><li><img src="res/icon4.png"><span class="span_li">Logowanie</span></li></a>
-             <a href="https://github.com/Mateusz-Szymkiewicz1/kazachstan.net" target="_blank"><li><img src="res/icon6.png"><span class="span_li">O projekcie</span></li></a>
-             <a href="help.php"><li><img src="res/icon2.png"><span class="span_li">Pomoc</span></li></a>
-             <a href="index.php"><li id="li7"><img src="res/icon5.png"><span class="span_li">Zamknij</span></li></a>
+             <?php $id2 = $id+1; echo '<a href="ob_wspolne.php?id='.$id2.'">';?><li id="li2"><img src="res/icon3.png"><span class="span_li"><span class="span_underline">N</span>astępny ob.</span></li></a>
+         <?php $id3 = $id-1; echo '<a href="ob_wspolne.php?id='.$id3.'">';?><li id="li3"><img src="res/icon3.png"><span class="span_li"><span class="span_underline">P</span>oprzedni ob.</span></li></a>
+             <a href="logowanie.php"><li><img src="res/icon4.png"><span class="span_li"><span class="span_underline">L</span>ogowanie</span></li></a>
+             <a href="https://github.com/Mateusz-Szymkiewicz1/kazachstan.net" target="_blank"><li><img src="res/icon6.png"><span class="span_li"><span class="span_underline">O</span> projekcie</span></li></a>
+             <a href="help.php"><li><img src="res/icon2.png"><span class="span_li"><span class="span_underline">P</span>omoc</span></li></a>
+             <a href="index.php"><li id="li7"><img src="res/icon5.png"><span class="span_li"><span class="span_underline">Z</span>amknij</span></li></a>
          </ul>
      </div>
   <div id="startbutton" class="startbutton-off" onclick="menu_start()">
