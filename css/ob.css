@@ -254,7 +254,7 @@ h3{
     background: silver;
     position: fixed;
     bottom: 44px;
-    left: 3px;
+    left: 4px;
     padding: 3px;
     box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px grey,inset 2px 2px #dfdfdf;
 }
@@ -262,10 +262,56 @@ h3{
     background: #818181;
     width: 35px;
     height: 100%;
+    float: left;
 }
 #ms{
     display: none;
 }
 .window{
     transition: transform 0.2s ease;
+}
+ul{
+    list-style: none;
+    margin: 0;
+}
+ul > li, ul > a > li{
+    margin-left: -5px;
+    width: 160px;
+    height: 39px;
+    transition: 0.2s;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-top: 6px;
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+}
+ul > li:hover, ul > a > li:hover{
+    background: #010081;
+    color: #fff;
+}
+li > img{
+    float: left;
+    transform: scale(0.75);
+}
+#li2 > img, #li3 > img{
+    transform: scale(1.25);
+    margin-top: 6px;
+    margin-left: 8px;
+}
+.span_li{
+    display: block;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+li:nth-child(6){
+    border-bottom: 2px solid #818181;
+}
+#li7{
+    border-top: 2px solid #fff;
+    height: 44px;
+    padding-top: 12px;
+}
+a{
+    text-decoration: none;
 }
